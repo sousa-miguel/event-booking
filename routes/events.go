@@ -39,9 +39,8 @@ func createEvent(context *gin.Context) {
 	if err != nil {
 		context.JSON(http.StatusBadRequest, gin.H{"message": "could not parse data"})
 	}
-	// TBD: update these
-	event.ID = 1
-	event.UserID = 1
+
+	event.UserID = context.GetInt64("userId") // value set from middleware Authenticate
 
 	err = event.Save()
 	if err != nil {

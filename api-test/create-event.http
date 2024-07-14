@@ -1,8 +1,9 @@
 POST http://localhost:8080/events
 content-type: application/json
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsMkBleGFtcGxlLmNvbSIsImV4cCI6MTcyMTAwMjA0NiwidXNlcklkIjoyfQ.PUMIBQ6zeMB96Ps5jI_aje7l2M2eahInupb6igKxUiM
 
 {
-    "name":"Event 3",
+    "name":"Event 2",
     "description":"Test event 3",
     "location":"plane",
     "dateTime":"2024-07-14T09:18:00.000Z"

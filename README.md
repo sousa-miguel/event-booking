@@ -17,7 +17,12 @@ This project is a REST API built using Golang. It is designed to handle event bo
     git clone https://github.com/yourusername/event-booking-go.git
     cd event-booking-go
     ```
-2. **Run the application:**
+2. **Create .env file**
+    ```bash
+    touch .env
+    echo "SUPER_SECRET=EnglishOrSpanish" >> .env 
+    ```
+3. **Run the application:**
     ```bash
     go run main.go
     ```
