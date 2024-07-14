@@ -31,7 +31,7 @@ jobs:
             - name: Set up Go
               uses: actions/setup-go@v5
               with:
-                go-version: ./go.mod # read version from go.mod file
+                go-version: /go.mod # read version from go.mod file
             
             - name: golangci-lint
               uses: golangci/golangci-lint-action@v6
