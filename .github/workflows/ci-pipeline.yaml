@@ -1,0 +1,40 @@
+name: CI Pipeline
+
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+
+permissions:
+  id-token: write
+  # Required: allow read access to the content for analysis.
+  contents: write
+  # Optional: allow read access to pull request. Use with `only-new-issues` option.
+  pull-requests: read
+  # Optional: allow write access to checks to allow the action to annotate code in the PR.
+  checks: write
+
+concurrency:
+    group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+    cancel-in-progress: true
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                ref: ${{ github.event.pull_request.head.ref }}
+              
+            - name: Set up Go
+              uses: actions/setup-go@v5
+              with:
+                # go-version: /go.mod # read version from go.mod file
+                go-version: 1.22.4
+            
+            - name: golangci-lint
+              uses: golangci/golangci-lint-action@v6
+              with:
+                  version: v1.59
