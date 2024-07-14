@@ -28,13 +28,13 @@ func (u User) Save() error {
 		return err
 	}
 
-	result, err := stmt.Exec(u.Email, hashedPassword)
-	if err != nil {
-		return err
-	}
+	_, err = stmt.Exec(u.Email, hashedPassword)
+	// if err != nil {
+	// 	return err
+	// }
 
-	userId, err := result.LastInsertId()
-	u.ID = userId
+	// userId, err := result.LastInsertId()
+	// u.ID = userId
 
 	return err
 }

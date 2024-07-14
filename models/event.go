@@ -25,12 +25,12 @@ func (e Event) Save() error {
 		return err
 	}
 	defer stmt.Close() // will be executed whenever function is done (success or error)
-	result, err := stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.UserID)
-	if err != nil {
-		return err
-	}
-	id, err := result.LastInsertId()
-	e.ID = id
+	_, err = stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.UserID)
+	// if err != nil {
+	// 	return err
+	// }
+	// id, err := result.LastInsertId()
+	// e.ID = id
 	return err
 }
 
