@@ -84,3 +84,69 @@ This project is a REST API built using Golang. It is designed to handle event bo
             "UserID": 1
         }
         ```
+- **Update Event by ID**
+    - **URL:** `/events/{id}`
+    - **Method:** `PUT`
+    - **Description:** Update a specific event by ID.
+    - **Request Body:** 
+        ```json
+        {
+            "Name":"Event 1 (updated)",
+            "Description":"Event desc",
+            "Location":"plane",
+            "DateTime":"2024-07-14T09:18:00.000Z"
+        }
+        ```
+    - **Response:**
+        ```json
+        {
+            "message": "Event updated successfully!"
+        }
+        ```
+- **Delete Event by ID**
+    - **URL:** `/events/{id}`
+    - **Method:** `DELETE`
+    - **Description:** Delete a specific event by ID.
+    - **Response:**
+        ```json
+        {
+            "message": "Event deleted successfully!"
+        }
+        ```
+
+### User Endpoints
+- **Create User**
+    - **URL:** `/signup`
+    - **Method:** `POST`
+    - **Description:** Create a new user.
+    - **Request Body:** 
+        ```json
+        {
+            "email":"email@example.com",
+            "password":"supersafe123"
+        }
+        ```
+    - **Response:**
+        ```json
+        {
+            "message": "user created successfully!"
+        }
+        ```
+- **Login**
+    - **URL:** `/login`
+    - **Method:** `POST`
+    - **Description:** Authenticate to the API.
+    - **Request Body:** 
+        ```json
+        {
+            "email":"email@example.com",
+            "password":"supersafe123"
+        }
+        ```
+    - **Response:**
+        ```json
+        {
+        "message": "login successfull!",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGV4YW1wbGUuY29tIiwiZXhwIjoxNzIwOTkwNTQzLCJ1c2VySWQiOjB9.Y8vtleH4jv2tb9VBQPVfi7otG1qUZCBc5qDck4kJFBw"
+        }
+        ```
