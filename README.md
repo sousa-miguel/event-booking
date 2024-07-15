@@ -17,11 +17,13 @@ This project is a REST API built using Golang. It is designed to handle event bo
     git clone https://github.com/yourusername/event-booking-go.git
     cd event-booking-go
     ```
-2. **Create .env file**
+
+2. **Create .env file:**
     ```bash
     touch .env
     echo "SUPER_SECRET=EnglishOrSpanish" >> .env 
     ```
+
 3. **Run the application:**
     ```bash
     go run main.go
@@ -33,7 +35,7 @@ This project is a REST API built using Golang. It is designed to handle event bo
 - **Create Event**
     - **URL:** `/events`
     - **Method:** `POST`
-    - **Description:** Create a new event.
+    - **Description:** Create a new event. (Requires authentication)
     - **Request Body:** 
         ```json
         {
@@ -89,10 +91,11 @@ This project is a REST API built using Golang. It is designed to handle event bo
             "UserID": 1
         }
         ```
+
 - **Update Event by ID**
     - **URL:** `/events/{id}`
     - **Method:** `PUT`
-    - **Description:** Update a specific event by ID.
+    - **Description:** Update a specific event by ID. (Requires authentication)
     - **Request Body:** 
         ```json
         {
@@ -108,10 +111,11 @@ This project is a REST API built using Golang. It is designed to handle event bo
             "message": "Event updated successfully!"
         }
         ```
+
 - **Delete Event by ID**
     - **URL:** `/events/{id}`
     - **Method:** `DELETE`
-    - **Description:** Delete a specific event by ID.
+    - **Description:** Delete a specific event by ID. (Requires authentication)
     - **Response:**
         ```json
         {
@@ -134,9 +138,10 @@ This project is a REST API built using Golang. It is designed to handle event bo
     - **Response:**
         ```json
         {
-            "message": "user created successfully!"
+            "message": "User created successfully!"
         }
         ```
+
 - **Login**
     - **URL:** `/login`
     - **Method:** `POST`
@@ -151,7 +156,41 @@ This project is a REST API built using Golang. It is designed to handle event bo
     - **Response:**
         ```json
         {
-        "message": "login successfull!",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGV4YW1wbGUuY29tIiwiZXhwIjoxNzIwOTkwNTQzLCJ1c2VySWQiOjB9.Y8vtleH4jv2tb9VBQPVfi7otG1qUZCBc5qDck4kJFBw"
+            "message": "Login successful!",
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGV4YW1wbGUuY29tIiwiZXhwIjoxNzIwOTkwNTQzLCJ1c2VySWQiOjB9.Y8vtleH4jv2tb9VBQPVfi7otG1qUZCBc5qDck4kJFBw"
         }
         ```
+
+### Registration Endpoints
+- **Event Registration**
+    - **URL:** `/events/{id}/register`
+    - **Method:** `POST`
+    - **Description:** Register authenticated user for an event. (Requires authentication)
+    - **Response:**
+        ```json
+        {
+            "message": "Registered successfully!"
+        }
+        ```
+
+- **Cancel Registration**
+    - **URL:** `/events/{id}/register`
+    - **Method:** `DELETE`
+    - **Description:** Cancel event registration. (Requires authentication)
+    - **Response:**
+        ```json
+        {
+            "message": "Registration cancelled."
+        }
+        ```
+
+## Authentication
+The following endpoints require authentication:
+- Create Event
+- Update Event by ID
+- Delete Event by ID
+- Event Registration
+- Cancel Registration
+
+To authenticate, include the following header in your requests:
+`authorization: <token received in login>`
