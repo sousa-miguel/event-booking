@@ -1,10 +1,10 @@
 POST http://localhost:8080/events
 content-type: application/json
-authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsMkBleGFtcGxlLmNvbSIsImV4cCI6MTcyMTAwMjA0NiwidXNlcklkIjoyfQ.PUMIBQ6zeMB96Ps5jI_aje7l2M2eahInupb6igKxUiM
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGV4YW1wbGUuY29tIiwiZXhwIjoxNzIxMDM5NjA3LCJ1c2VySWQiOjF9.em6fKfNIJ8wrkfgxSYQfnkQhaOZTZuBFIbtcBqsCq-g
 
 {
-    "name":"Event 2",
-    "description":"Test event 3",
+    "name":"Event 1",
+    "description":"Test event 1",
     "location":"plane",
     "dateTime":"2024-07-14T09:18:00.000Z"
 }
