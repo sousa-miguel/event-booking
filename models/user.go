@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"log"
 
 	"example.com/rest-api-gin/db"
 	"example.com/rest-api-gin/utils"
@@ -20,7 +21,12 @@ func (u User) Save() error {
 	if err != nil {
 		return err
 	}
-	defer stmt.Close()
+
+	defer func() {
+		if err := stmt.Close(); err != nil {
+			log.Printf("failed to close statement: %v", err)
+		}
+	}()
 
 	hashedPassword, err := utils.HashPassword(u.Password)
 
