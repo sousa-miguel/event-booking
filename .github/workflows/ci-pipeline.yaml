@@ -8,11 +8,8 @@ on:
 
 permissions:
   id-token: write
-  # Required: allow read access to the content for analysis.
   contents: write
-  # Optional: allow read access to pull request. Use with `only-new-issues` option.
   pull-requests: read
-  # Optional: allow write access to checks to allow the action to annotate code in the PR.
   checks: write
 
 concurrency:
@@ -21,6 +18,7 @@ concurrency:
 
 jobs:
     lint:
+        name: Linter
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -35,6 +33,4 @@ jobs:
                 go-version-file: go.mod # read version from go.mod file
             
             - name: golangci-lint
-              uses: golangci/golangci-lint-action@v6
-              with:
-                  version: v1.59
+              uses: golangci/golangci-lint-action@v8

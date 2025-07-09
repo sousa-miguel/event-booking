@@ -1,6 +1,7 @@
 package models
 
 import (
+	"log"
 	"time"
 
 	"example.com/rest-api-gin/db"
@@ -24,7 +25,11 @@ func (e *Event) Save() error {
 	if err != nil {
 		return err
 	}
-	defer stmt.Close() // will be executed whenever function is done (success or error)
+	defer func() {
+		if err := stmt.Close(); err != nil {
+			log.Printf("failed to close statement: %v", err)
+		}
+	}()
 	result, err := stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.UserID)
 	if err != nil {
 		return err
@@ -40,7 +45,11 @@ func GetAllEvents() ([]Event, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func() {
+		if err := rows.Close(); err != nil {
+			log.Printf("failed to close: %v", err)
+		}
+	}()
 
 	var events []Event
 
@@ -79,7 +88,12 @@ func (e Event) Update() error {
 	if err != nil {
 		return err
 	}
-	defer stmt.Close()
+
+	defer func() {
+		if err := stmt.Close(); err != nil {
+			log.Printf("failed to close: %v", err)
+		}
+	}()
 
 	_, err = stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.ID)
 	return err
@@ -91,7 +105,12 @@ func (e Event) Delete() error {
 	if err != nil {
 		return err
 	}
-	defer stmt.Close()
+
+	defer func() {
+		if err := stmt.Close(); err != nil {
+			log.Printf("failed to close: %v", err)
+		}
+	}()
 
 	_, err = stmt.Exec(e.ID)
 
@@ -105,7 +124,11 @@ func (e Event) Register(userId int64) error {
 	if err != nil {
 		return err
 	}
-	defer stmt.Close()
+	defer func() {
+		if err := stmt.Close(); err != nil {
+			log.Printf("failed to close: %v", err)
+		}
+	}()
 
 	_, err = stmt.Exec(e.ID, userId)
 
@@ -118,7 +141,11 @@ func (e Event) CancelRegistration(userId int64) error {
 	if err != nil {
 		return err
 	}
-	defer stmt.Close()
+	defer func() {
+		if err := stmt.Close(); err != nil {
+			log.Printf("failed to close: %v", err)
+		}
+	}()
 
 	_, err = stmt.Exec(e.ID, userId)
 
